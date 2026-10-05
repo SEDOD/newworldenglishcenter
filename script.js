@@ -22,15 +22,15 @@ function init(){
  const top=$('#backTop');window.addEventListener('scroll',()=>top.classList.toggle('visible',window.scrollY>300),{passive:true});top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
  $('#interestForm').addEventListener('submit',event=>{event.preventDefault();if(!$('#consent').checked)return;$('#formMessage').hidden=false;$('#formMessage').textContent=`${t('ready')} ${CONTACT_EMAIL}. ${t('nothing')} ${CONTACT_EMAIL}.`;window.location.href=mailLink();});
 }
+init();
 
-
-/* Défilement automatique des sites sur téléphone */
+/* Défilement horizontal automatique des sites sur téléphone */
 const locationsGrid = document.querySelector('.locations-grid');
 
 if (locationsGrid) {
   let locationIndex = 0;
 
-  function autoScrollLocations() {
+  setInterval(() => {
     if (window.innerWidth <= 600) {
       const cards = locationsGrid.querySelectorAll('.location-card');
 
@@ -41,16 +41,16 @@ if (locationsGrid) {
           locationIndex = 0;
         }
 
-        cards[locationIndex].scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
+        const card = cards[locationIndex];
+
+        locationsGrid.scrollTo({
+          left: card.offsetLeft - locationsGrid.offsetLeft,
+          behavior: 'smooth'
         });
       }
     }
-  }
-
-  setInterval(autoScrollLocations, 2000);
+  }, 2000);
 }
-init();
+
+
 
