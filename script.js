@@ -23,3 +23,33 @@ function init(){
  $('#interestForm').addEventListener('submit',event=>{event.preventDefault();if(!$('#consent').checked)return;$('#formMessage').hidden=false;$('#formMessage').textContent=`${t('ready')} ${CONTACT_EMAIL}. ${t('nothing')} ${CONTACT_EMAIL}.`;window.location.href=mailLink();});
 }
 init();
+
+/* Défilement automatique des sites sur téléphone */
+const locationsGrid = document.querySelector('.locations-grid');
+
+if (locationsGrid) {
+  let locationIndex = 0;
+
+  function autoScrollLocations() {
+    if (window.innerWidth <= 600) {
+      const cards = locationsGrid.querySelectorAll('.location-card');
+
+      if (cards.length > 0) {
+        locationIndex++;
+
+        if (locationIndex >= cards.length) {
+          locationIndex = 0;
+        }
+
+        cards[locationIndex].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  }
+
+  setInterval(autoScrollLocations, 2000);
+}
+
