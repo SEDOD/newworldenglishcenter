@@ -22,7 +22,7 @@ function init(){
  const top=$('#backTop');window.addEventListener('scroll',()=>top.classList.toggle('visible',window.scrollY>300),{passive:true});top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
  $('#interestForm').addEventListener('submit',event=>{event.preventDefault();if(!$('#consent').checked)return;$('#formMessage').hidden=false;$('#formMessage').textContent=`${t('ready')} ${CONTACT_EMAIL}. ${t('nothing')} ${CONTACT_EMAIL}.`;window.location.href=mailLink();});
 }
-init();
+
 
 /* Défilement automatique des sites sur téléphone */
 const locationsGrid = document.querySelector('.locations-grid');
@@ -52,4 +52,5 @@ if (locationsGrid) {
 
   setInterval(autoScrollLocations, 2000);
 }
+init();
 
