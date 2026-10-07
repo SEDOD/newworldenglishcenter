@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Ajoutez ici l’URL publique du sitemap après la mise en ligne :
-# Sitemap: https://votre-domaine.com/sitemap.xml
